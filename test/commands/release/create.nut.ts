@@ -12,10 +12,9 @@ describe('release create NUTs', () => {
     await session?.clean();
   });
 
-  it('should display provided name', () => {
-    const name = 'World';
-    const command = `release create --name ${name}`;
+  it('should not crash', () => {
+    const command = 'release create';
     const output = execCmd(command, { ensureExitCode: 0 }).shellOutput.stdout;
-    expect(output).to.contain(name);
+    expect(output).exist;
   });
 });

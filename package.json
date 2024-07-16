@@ -1,7 +1,7 @@
 {
-  "name": "my-plugin",
-  "description": "test plugin",
-  "version": "1.0.0",
+  "name": "salesforce-git-plugin",
+  "description": "Helps handle complex branches system and Salesforce metadata",
+  "version": "0.0.1",
   "dependencies": {
     "@oclif/core": "^4",
     "@salesforce/core": "^7.2.0",

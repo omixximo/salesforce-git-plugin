@@ -4,7 +4,7 @@ import { RepoFlag, BranchesFlag } from '../../flags/flags.js';
 import { mergeBranchPackages } from '../../utils/components.js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
-const messages = Messages.loadMessages('my-plugin', 'release.create');
+const messages = Messages.loadMessages('salesforce-git-plugin', 'release.create');
 
 export type ReleaseCreateResult = {
   success: boolean;

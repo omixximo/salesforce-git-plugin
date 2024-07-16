@@ -1,18 +1,14 @@
-# summary
+# flags.repo.summary
 
-Summary of a command.
+TODO
 
-# description
+# flags.branch.summary
 
-More information about a command. Don't repeat the summary.
+TODO
 
-# flags.targetOrg.summary
+# flags.branches.summary
 
-Test message
-
-# flags.targetOrg.description
-
-Test description
+TODO
 
 # errors.NoDefaultRepo
 

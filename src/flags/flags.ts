@@ -5,7 +5,7 @@ import { simpleGit, SimpleGit } from 'simple-git';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 
-const messages = Messages.loadMessages('my-plugin', 'messages');
+const messages = Messages.loadMessages('salesforce-git-plugin', 'messages');
 
 export function maybeGetGit(input: string): Promise<SimpleGit>;
 export function maybeGetGit(input: undefined): Promise<undefined>;
@@ -49,7 +49,7 @@ export const validateBranch = async (input: string): Promise<string> => {
 
 export const RepoFlag = Flags.custom({
   char: 'r',
-  summary: messages.getMessage('flags.targetOrg.summary'),
+  summary: messages.getMessage('flags.repo.summary'),
   noCacheDefault: true,
   parse: async (input: string) => getGitOrThrow(input),
   default: async () => getGitOrThrow(),
@@ -58,7 +58,7 @@ export const RepoFlag = Flags.custom({
 
 export const BranchFlag = Flags.custom({
   char: 'b',
-  summary: messages.getMessage('flags.targetOrg.summary'),
+  summary: messages.getMessage('flags.branch.summary'),
   noCacheDefault: true,
   parse: async (input: string) => validateBranch(input),
   required: true,
@@ -67,7 +67,7 @@ export const BranchFlag = Flags.custom({
 export const BranchesFlag = Flags.custom({
   char: 'b',
   multiple: true,
-  summary: messages.getMessage('flags.targetOrg.summary'),
+  summary: messages.getMessage('flags.branches.summary'),
   noCacheDefault: true,
   parse: async (input: string) => validateBranch(input),
   required: true,

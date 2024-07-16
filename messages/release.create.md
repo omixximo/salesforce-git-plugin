@@ -23,7 +23,3 @@ This person can be anyone in the world!
 - Say hello to someone you know:
 
   <%= config.bin %> <%= command.id %> --name Astro
-
-# info.hello
-
-Hello %s at %s.
