@@ -12,6 +12,5 @@
   },
   "editor.tabSize": 2,
   "editor.formatOnSave": true,
-  "rewrap.wrappingColumn": 80,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "rewrap.wrappingColumn": 80
 }

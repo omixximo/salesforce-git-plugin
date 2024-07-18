@@ -1,7 +1,7 @@
 {
   "name": "salesforce-git-plugin",
   "description": "Helps handle complex branches system and Salesforce metadata",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {
     "@oclif/core": "^4",
     "@salesforce/core": "^7.2.0",
@@ -12,9 +12,9 @@
   },
   "devDependencies": {
     "@oclif/plugin-command-snapshot": "^5.1.9",
-    "@salesforce/cli-plugins-testkit": "^5.2.0",
+    "@salesforce/cli-plugins-testkit": "^5.3.10",
     "@salesforce/dev-scripts": "^10",
-    "eslint-plugin-sf-plugin": "^1.18.3",
+    "eslint-plugin-sf-plugin": "^1.18.6",
     "oclif": "^4.8.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
@@ -46,25 +46,11 @@
       "@oclif/plugin-help"
     ],
     "topics": {
-      "hello": {
-        "description": "Commands to say hello."
-      },
-      "call": {
-        "description": "description for call",
-        "subtopics": {
-          "external": {
-            "description": "description for call.external"
-          }
-        }
-      },
-      "connect": {
-        "description": "description for connect"
-      },
-      "test": {
-        "description": "description for test"
-      },
       "release": {
         "description": "description for release"
+      },
+      "branch": {
+        "description": "description for branch"
       }
     },
     "flexibleTaxonomy": true
