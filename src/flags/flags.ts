@@ -11,16 +11,16 @@ export function maybeGetGit(input: string): Promise<SimpleGit>;
 export function maybeGetGit(input: undefined): Promise<undefined>;
 export function maybeGetGit(input?: string | undefined): Promise<SimpleGit | undefined>;
 export function maybeGetGit(input?: string | undefined): Promise<SimpleGit | undefined> {
-  return new Promise((): SimpleGit | undefined => {
+  return new Promise((resolve, reject) => {
     try {
       // .checkIsRepo()
       const dir = input ? input : process.cwd();
-      return simpleGit(dir);
+      resolve(simpleGit(dir));
     } catch (e) {
       if (!input) {
-        return undefined;
+        resolve(undefined);
       } else {
-        throw e;
+        reject(e);
       }
     }
   });
@@ -36,10 +36,26 @@ export const getGitOrThrow = async (input?: string): Promise<SimpleGit> => {
 
 export const validateBranch = async (input: string): Promise<string> => {
   const git = await getGitOrThrow();
-  const targetBranch: string = input;
+  let targetBranch: string = input;
 
   const branchResults = await git.branch();
-  const validBranch = branchResults.all.includes(targetBranch) || branchResults.all.includes('remotes/' + targetBranch);
+  const isLocal = !targetBranch.startsWith('origin/');
+
+  let validBranch: boolean;
+  if (isLocal) {
+    if (branchResults.all.includes(targetBranch)) {
+      validBranch = true;
+    } else {
+      validBranch = branchResults.all.includes('remotes/origin/' + targetBranch);
+      if (validBranch) {
+        // TODO Add warning if the branch is only in the remote
+        targetBranch = 'origin/' + targetBranch;
+      }
+    }
+  } else {
+    validBranch = branchResults.all.includes('remotes/' + targetBranch);
+  }
+
   if (!validBranch) {
     throw messages.createError('errors.BranchNotInRemote');
   }
@@ -65,7 +81,6 @@ export const BranchFlag = Flags.custom({
 });
 
 export const BranchesFlag = Flags.custom({
-  char: 'b',
   multiple: true,
   summary: messages.getMessage('flags.branches.summary'),
   noCacheDefault: true,
