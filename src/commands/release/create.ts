@@ -1,13 +1,14 @@
 import { Flags, SfCommand } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import { RepoFlag, BranchesFlag } from '../../flags/flags.js';
-import { mergeBranchPackages } from '../../utils/components.js';
+import { getBranchManifestFolder, mergeBranchPackages, savePackage } from '../../utils/components.js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('salesforce-git-plugin', 'release.create');
 
 export type ReleaseCreateResult = {
   success: boolean;
+  packageXml: string;
 };
 
 export default class ReleaseCreate extends SfCommand<ReleaseCreateResult> {
@@ -30,15 +31,24 @@ export default class ReleaseCreate extends SfCommand<ReleaseCreateResult> {
 
     const git = flags.repo;
 
-    await git.checkoutBranch('release/' + flags['release-name'], 'master');
+    const releaseBranch = 'release/' + flags['release-name'];
+    await git.checkoutBranch(releaseBranch, 'master');
 
     await git.merge(['--no-ff', ...flags.branches]);
 
     const output = await mergeBranchPackages(flags.branches);
-    this.log(output);
+
+    // Write the package.xml to manifest/release/<release-name>/package.xml
+    const packageFolder = getBranchManifestFolder(releaseBranch);
+    await savePackage(output, packageFolder);
+
+    // Save the package.xml to the release branch
+    await git.add([packageFolder]);
+    await git.commit(`Created ${flags['release-name']} package.xml`);
 
     return {
       success: true,
+      packageXml: await output.getPackageXml(),
     };
   }
 }
