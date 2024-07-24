@@ -51,6 +51,9 @@
       },
       "branch": {
         "description": "description for branch"
+      },
+      "package": {
+        "description": "description for package"
       }
     },
     "flexibleTaxonomy": true
