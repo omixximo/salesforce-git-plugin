@@ -50,5 +50,9 @@ export async function mergeBranchPackages(branches: string[]): Promise<Component
 
 export async function savePackage(componentSet: ComponentSet, folder: string): Promise<void> {
   const packageXml = await componentSet.getPackageXml();
+
+  // Ensure the directory exists
+  fs.mkdirSync(folder, { recursive: true });
+
   fs.writeFileSync(folder + '/package.xml', packageXml);
 }

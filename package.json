@@ -1,7 +1,7 @@
 {
   "name": "salesforce-git-plugin",
   "description": "Helps handle complex branches system and Salesforce metadata",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "dependencies": {
     "@oclif/core": "^4",
     "@salesforce/core": "^7.2.0",
@@ -51,6 +51,9 @@
       },
       "branch": {
         "description": "description for branch"
+      },
+      "package": {
+        "description": "description for package"
       }
     },
     "flexibleTaxonomy": true
