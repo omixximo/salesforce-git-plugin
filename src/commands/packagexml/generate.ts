@@ -7,13 +7,13 @@ import { getIndexCommit, getFilesMergeDiff } from '../../utils/git.js';
 import { getBranchManifestFolder, savePackage } from '../../utils/components.js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
-const messages = Messages.loadMessages('salesforce-git-plugin', 'package.generate');
+const messages = Messages.loadMessages('salesforce-git-plugin', 'packagexml.generate');
 
-export type PackageGenerateResult = {
+export type PackagexmlGenerateResult = {
   created: boolean;
 };
 
-export default class PackageGenerate extends SfCommand<PackageGenerateResult> {
+export default class PackagexmlGenerate extends SfCommand<PackagexmlGenerateResult> {
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
@@ -25,8 +25,8 @@ export default class PackageGenerate extends SfCommand<PackageGenerateResult> {
     repo: RepoFlag(),
   };
 
-  public async run(): Promise<PackageGenerateResult> {
-    const { flags } = await this.parse(PackageGenerate);
+  public async run(): Promise<PackagexmlGenerateResult> {
+    const { flags } = await this.parse(PackagexmlGenerate);
 
     const git = flags.repo;
 

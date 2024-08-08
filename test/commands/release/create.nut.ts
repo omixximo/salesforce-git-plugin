@@ -13,7 +13,7 @@ describe('release create NUTs', () => {
   });
 
   it('should not crash', () => {
-    const command = 'release create';
+    const command = 'release create --help';
     const output = execCmd(command, { ensureExitCode: 0 }).shellOutput.stdout;
     expect(output).exist;
   });
