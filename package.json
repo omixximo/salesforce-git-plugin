@@ -11,7 +11,7 @@
     "simple-git": "^3.25.0"
   },
   "devDependencies": {
-    "@oclif/plugin-command-snapshot": "^5.1.9",
+    "@oclif/plugin-command-snapshot": "^5.2.13",
     "@salesforce/cli-plugins-testkit": "^5.3.18",
     "@salesforce/dev-scripts": "^10",
     "eslint-plugin-sf-plugin": "^1.18.6",
